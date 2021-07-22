@@ -1,14 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-    const Clock = () =>{
-        const [date, setDate] = useState(new Date())
+const Clock = () => {
+  const [date, setDate] = useState(new Date())
 
-        useEffect(()=> {
-            setDate(new Date());
-          });
-        return(
-            <h2>It is {date.toLocaleTimeString()}</h2>
-        );   
-    };
+  useEffect(() => {
+    setDate(new Date());
+  });
 
-  export default Clock;
+  return (
+    <h2>It is {date.toLocaleTimeString()}</h2>
+  );
+};
+
+export default Clock;

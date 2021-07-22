@@ -1,6 +1,7 @@
 
 import React, {useState, useEffect} from "react";
 import "./App.css";
+
 //Importing components
 import Form from "./components/Form.js";
 import TodoList from "./components/TodoList.js";
@@ -28,8 +29,7 @@ function App() {
 
   const getLocalTodos = () =>{
     if(localStorage.getItem("todos")!==null){
-      let todoLocal = JSON.parse(localStorage.getItem("todos")); //No sé por qué funciona
-      console.log(todoLocal);
+      let todoLocal = JSON.parse(localStorage.getItem("todos")); 
       setTodos(todoLocal);
     }
   };
@@ -55,15 +55,15 @@ function App() {
         setFilteredTodos(todos);
         break;
       case "completed":
-        doCompletedTodos(true);
+        showCompletedTodos(true);
         break;
       case "uncompleted":
-        doCompletedTodos(false);
+        showCompletedTodos(false);
         break;
     }
   };
 
-  const doCompletedTodos = (value) =>{
+  const showCompletedTodos = (value) =>{
     setFilteredTodos(todos.filter(r=>
       r.completed === value
     ));
