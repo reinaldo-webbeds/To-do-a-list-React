@@ -1,19 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, {useContext} from "react";
 //Import component
 import Todo from "./Todo.js";
+import { AppContext } from "../contexts/AppContext";
 
-const TodoList = ({ todos, switchCompleted, deleteRecord }) => {
+const TodoList = () => {
+    const appContext = useContext(AppContext);
 
+    const filteredTodos = appContext.filteredTodos;
     return (
         <div className="todo-container">
             <ul className="todo-list">
-                {todos.map(todo => (
+                {filteredTodos.map(todo => (
                     <Todo
                         key={todo.id}
                         todo={todo}
-                        deleteRecord={deleteRecord}
-                        switchCompleted={switchCompleted}
                     />
                 ))}
             </ul>
@@ -21,10 +21,5 @@ const TodoList = ({ todos, switchCompleted, deleteRecord }) => {
     );
 };
 
-TodoList.propTypes = {
-    todos: PropTypes.array,
-    switchCompleted: PropTypes.func,
-    deleteRecord: PropTypes.func
-}
 
 export default TodoList;

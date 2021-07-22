@@ -1,18 +1,28 @@
 
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useContext} from "react";
 import "./App.css";
 
 //Importing components
 import Form from "./components/Form.js";
 import TodoList from "./components/TodoList.js";
-import Clock from "./components/Clock";
+import {AppContext} from "./contexts/AppContext";
 
 function App() {
 
-  const [inputText, setInputText] = useState(""); 
-  const [todos, setTodos] = useState([]);
-  const [status, setStatus] = useState("all");
-  const [filteredTodos, setFilteredTodos] = useState([]);
+  const appContext = useContext(AppContext);
+
+  // Es posible que lo tenga que declararlas como variables
+  // Si falla deberé usar punteros o usar directamente el app con el valor que deseo
+
+  const todos = appContext.todos;             
+  const setTodos = appContext.setTodos;
+  const status = appContext.status;
+  const setFilteredTodos = appContext.setFilteredTodos;
+
+  //const [inputText, setInputText] = useState(""); 
+  //const [todos, setTodos] = useState([]);
+  //const [status, setStatus] = useState("all");
+  //const [filteredTodos, setFilteredTodos] = useState([]);
 
   useEffect(()=> {
     getLocalTodos();
@@ -32,21 +42,6 @@ function App() {
       let todoLocal = JSON.parse(localStorage.getItem("todos")); 
       setTodos(todoLocal);
     }
-  };
-
-  const deleteRecord = (todoId) =>{
-      setTodos(todos.filter( r=> r.id !== todoId ));
-  };
-
-  const switchCompleted = (todoId) =>{
-      setTodos(
-        todos.map( r => {
-          if(r.id === todoId){
-            r.completed = !r.completed;
-          }
-          return r;
-        })
-      );
   };
 
   const filterHandler = () =>{
@@ -74,19 +69,8 @@ function App() {
       <header>
       <h1>Reinaldo's Todo a List</h1>
       </header>
-      <Form 
-        todos={todos} 
-        setTodos={setTodos} 
-        setInputText = {setInputText} 
-        inputText={inputText}
-        setStatus={setStatus}
-      />
-      <TodoList 
-        todos={filteredTodos} 
-        deleteRecord={deleteRecord}
-        switchCompleted={switchCompleted}
-      />
-      <Clock />
+      <Form />
+      <TodoList />
     </div>
   );
 }

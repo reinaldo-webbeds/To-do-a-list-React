@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 
 const Clock = () => {
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date());
 
   useEffect(() => {
-    setDate(new Date());
+    var timerID = setInterval( ()=> tick(), 1000);
+    return ()=>clearInterval(timerID);
   });
 
+  function tick(){
+    setDate(new Date());
+  }
+
   return (
-    <h2>It is {date.toLocaleTimeString()}</h2>
+    <div>
+    <br></br>
+    <h2 id="clock">It is {date.toLocaleTimeString()}</h2>
+    </div>
   );
 };
 

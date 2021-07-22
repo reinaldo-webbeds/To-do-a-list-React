@@ -3,6 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* rei changes */
+#clock{
+  text-align: center;
+}
+/* end rei changes */
+
 body {
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   color: white;
@@ -12,7 +19,6 @@ body {
 header {
   font-size: 2rem;
 }
-
 header,
 form {
   min-height: 20vh;

@@ -1,7 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
+import { AppContext } from "../contexts/AppContext";
 
-const Form = ({ setInputText, setTodos, todos, inputText, setStatus, isTodoCompleted }) => {
+const Form = ({isTodoCompleted}) => {
+    const appContext = useContext(AppContext);
 
+    const setInputText = appContext.setInputText;
+    const setTodos = appContext.setTodos;
+    const todos = appContext.todos;
+    const inputText = appContext.inputText;
+    const setStatus = appContext.setStatus;
+    
     const inputTextHandler = (e) => {
         setInputText(e.target.value);
     };
