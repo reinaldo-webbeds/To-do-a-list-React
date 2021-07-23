@@ -11,18 +11,11 @@ function App() {
 
   const appContext = useContext(AppContext);
 
-  // Es posible que lo tenga que declararlas como variables
-  // Si falla deberé usar punteros o usar directamente el app con el valor que deseo
-
   const todos = appContext.todos;             
   const setTodos = appContext.setTodos;
   const status = appContext.status;
   const setFilteredTodos = appContext.setFilteredTodos;
-
-  //const [inputText, setInputText] = useState(""); 
-  //const [todos, setTodos] = useState([]);
-  //const [status, setStatus] = useState("all");
-  //const [filteredTodos, setFilteredTodos] = useState([]);
+  const filteredTodos = appContext.filteredTodos;
 
   useEffect(()=> {
     getLocalTodos();
@@ -69,6 +62,7 @@ function App() {
       <header>
       <h1>Reinaldo's Todo a List</h1>
       </header>
+      <h3 id="totalItems">Total items: {filteredTodos.length}</h3>
       <Form />
       <TodoList />
     </div>
